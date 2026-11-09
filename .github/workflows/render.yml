@@ -14,9 +14,11 @@ jobs:
       - name: Instalar dependencias
         run: |
           sudo apt-get update
-          sudo apt-get install -y ffmpeg fonts-dejavu-core
+          sudo apt-get install -y ffmpeg fonts-dejavu-core curl
           pip install edge-tts gTTS
       - name: Renderizar video
+        env:
+          POLLINATIONS_API_KEY: ${{ secrets.POLLINATIONS_API_KEY }}
         run: python scripts/render.py
       - name: Subir artefacto
         uses: actions/upload-artifact@v4
