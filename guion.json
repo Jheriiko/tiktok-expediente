@@ -1,36 +1,51 @@
 {
-  "titulo": "La llorona que ya no lloraba y era feliz",
+  "titulo": "Feluz y la llorosa",
   "advertencia": "REPORTE NO CONFIRMADO",
   "segmentos": [
     {
-      "voz": "¿Cómo era la llorona que ya no lloraba y era feliz?",
-      "pantalla": "Según reportes, lloraba de reír",
-      "imagen": "cinematic"
+      "voz": "Nuestra exploradora Feluz",
+      "pantalla": "Feluz",
+      "imagen": "cargando"
     },
     {
-      "voz": "¿Cómo era la llorona?",
-      "pantalla": "lloraba de reír",
-      "imagen": "cinematic"
+      "voz": "Según reportes...",
+      "pantalla": "Feluz",
+      "imagen": "cargando"
     },
     {
-      "voz": "¿Cómo era la llorona?",
-      "pantalla": "lloraba de reír",
-      "imagen": "cinematic"
+      "voz": "Feluz camina por el bosque",
+      "pantalla": "Feluz camina por el bosque",
+      "imagen": "Feluz camina por el bosque"
     },
     {
-      "voz": "lloraba de reír",
-      "pantalla": "lloraba de reír",
-      "imagen": "cinematic"
+      "voz": "Feluz ve a una pobre y alegre",
+      "pantalla": "Feluz ve a la pobre y alegre",
+      "imagen": "Feluz ve a la pobre y alegre"
     },
     {
-      "voz": "lloraba de reír",
-      "pantalla": "lloraba de reír",
-      "imagen": "cinematic"
+      "voz": "Según reportes... Feluz",
+      "pantalla": "Feluz, alegre y la pobre, Feluz camina por el bosque",
+      "imagen": "Feluz camina por el bosque"
     },
     {
-      "voz": "lloraba de reír",
-      "pantalla": "lloraba de reír",
-      "imagen": "cinematic"
+      "voz": "Se dice que Feluz llorosa",
+      "pantalla": "Según reportes... Feluz camina por el bosque, Feluz alegre y la pobre",
+      "imagen": "Feluz camina por el bosque"
+    },
+    {
+      "voz": "Feluz ve una carpa de lloros",
+      "pantalla": "Feluz ve una carpa de lloros",
+      "imagen": "Feluz ve una carpa de lloros"
+    },
+    {
+      "voz": "Feluz llama a una llorosa",
+      "pantalla": "Feluz llama a una llorosa",
+      "imagen": "Feluz llama a una llorosa"
+    },
+    {
+      "voz": "Según reportes... Feluz llama a una llorosa",
+      "pantalla": "Feluz camina, llorosa, llorosa, Feluz llama a una llorosa, Feluz alegre y la pobre, llorosa",
+      "imagen": "Feluz llama a una llorosa"
     }
   ]
 }
