@@ -1,12 +1,36 @@
 {
-  "titulo": "Expediente_Minanbe_IA",
+  "titulo": "La llorona que ya no lloraba y era feliz",
   "advertencia": "REPORTE NO CONFIRMADO",
   "segmentos": [
-    {"voz": "Una ciudad maya habría estado oculta más de mil años en Calakmul.", "pantalla": "MINANBÉ\n'NO HAY CAMINO'", "imagen": "ancient maya ruins in the jungle, cinematic lighting, highly detailed, 8k"},
-    {"voz": "Según reportes de 2026, tendría más de catorce edificios religiosos y habría funcionado entre los años seiscientos y novecientos después de Cristo.", "pantalla": "14 EDIFICIOS\n600–900 d.C.\n(REPORTE NO CONFIRMADO)", "imagen": "maya temple ruins overgrown with vines, mysterious atmosphere, cinematic"},
-    {"voz": "Lo delicado no es solo el hallazgo. Publicar la ubicación exacta puede acelerar el saqueo arqueológico.", "pantalla": "UBICACIÓN EXACTA:\nNO MOSTRAR", "imagen": "dark archaeological site at night, shadows, mysterious"},
-    {"voz": "Esto es lo confirmado: hay reportes de un hallazgo en Calakmul. Esto no: que Minanbé sea el nombre oficial, ni que las cifras sean definitivas.", "pantalla": "CONFIRMADO: REPORTES\nNO CONFIRMADO:\nNOMBRE Y CIFRAS", "imagen": "ancient mayan stone carving close up, cinematic lighting"},
-    {"voz": "Si el sitio es real, su valor está en lo que puede decirnos sobre las rutas mayas. Y eso se protege con ciencia, no con views.", "pantalla": "CIENCIA > VIEWS", "imagen": "archaeologist working in a jungle ruins site, cinematic"},
-    {"voz": "Guarda esto. Si encuentras la fuente primaria, fíjala en comentarios. Y no compartas coordenadas exactas.", "pantalla": "EXPEDIENTE MINANBÉ\nFUENTE PRIMARIA EN COMENTARIOS", "imagen": "mysterious maya jungle at sunset, volumetric light, 8k"}
+    {
+      "voz": "¿Cómo era la llorona que ya no lloraba y era feliz?",
+      "pantalla": "Según reportes, lloraba de reír",
+      "imagen": "cinematic"
+    },
+    {
+      "voz": "¿Cómo era la llorona?",
+      "pantalla": "lloraba de reír",
+      "imagen": "cinematic"
+    },
+    {
+      "voz": "¿Cómo era la llorona?",
+      "pantalla": "lloraba de reír",
+      "imagen": "cinematic"
+    },
+    {
+      "voz": "lloraba de reír",
+      "pantalla": "lloraba de reír",
+      "imagen": "cinematic"
+    },
+    {
+      "voz": "lloraba de reír",
+      "pantalla": "lloraba de reír",
+      "imagen": "cinematic"
+    },
+    {
+      "voz": "lloraba de reír",
+      "pantalla": "lloraba de reír",
+      "imagen": "cinematic"
+    }
   ]
 }
