@@ -42,11 +42,11 @@ def main():
         clip(seg["pantalla"], d, v, i)
         clips.append(v); audios.append(a)
 
-    lv = OUT / "lv.txt"; lv.write_text("\n".join(f"file '{c}'" for c in clips))
+    lv = OUT / "lv.txt"; lv.write_text("\n".join(f"file '{c.name}'" for c in clips))
     v_sin_audio = OUT / "v_sin_audio.mp4"
     run(["ffmpeg","-y","-f","concat","-safe","0","-i",lv,"-c","copy",v_sin_audio])
 
-    la = OUT / "la.txt"; la.write_text("\n".join(f"file '{a}'" for a in audios))
+    la = OUT / "la.txt"; la.write_text("\n".join(f"file '{a.name}'" for a in audios))
     a_full = OUT / "audio_full.mp3"
     run(["ffmpeg","-y","-f","concat","-safe","0","-i",la,"-c","copy",a_full])
 
