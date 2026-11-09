@@ -1,0 +1,31 @@
+name: Render TikTok
+on:
+  workflow_dispatch:
+  push:
+    paths: ["guion.json"]
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalar dependencias
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-dejavu-core
+          pip install edge-tts gTTS
+      - name: Renderizar video
+        run: python scripts/render.py
+      - name: Subir artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: video-tiktok
+          path: out/*.mp4
+      - name: Publicar en Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ github.run_number }}
+          name: Video ${{ github.run_number }}
+          files: out/*.mp4

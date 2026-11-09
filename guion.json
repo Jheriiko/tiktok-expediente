@@ -1,0 +1,13 @@
+{
+  "titulo": "Expediente_Minanbe",
+  "advertencia": "REPORTE NO CONFIRMADO",
+  "musica_url": "",
+  "segmentos": [
+    {"voz": "Una ciudad maya habría estado oculta más de mil años en Calakmul.", "pantalla": "MINANBÉ\n'NO HAY CAMINO'"},
+    {"voz": "Según reportes de 2026, tendría más de catorce edificios religiosos y habría funcionado entre los años seiscientos y novecientos después de Cristo.", "pantalla": "14 EDIFICIOS\n600–900 d.C.\n(REPORTE NO CONFIRMADO)"},
+    {"voz": "Lo delicado no es solo el hallazgo. Publicar la ubicación exacta puede acelerar el saqueo arqueológico.", "pantalla": "UBICACIÓN EXACTA:\nNO MOSTRAR"},
+    {"voz": "Esto es lo confirmado: hay reportes de un hallazgo en Calakmul. Esto no: que Minanbé sea el nombre oficial, ni que las cifras sean definitivas.", "pantalla": "CONFIRMADO: REPORTES\nNO CONFIRMADO:\nNOMBRE Y CIFRAS"},
+    {"voz": "Si el sitio es real, su valor está en lo que puede decirnos sobre las rutas mayas. Y eso se protege con ciencia, no con views.", "pantalla": "CIENCIA > VIEWS"},
+    {"voz": "Guarda esto. Si encuentras la fuente primaria, fíjala en comentarios. Y no compartas coordenadas exactas.", "pantalla": "EXPEDIENTE MINANBÉ\nFUENTE PRIMARIA EN COMENTARIOS"}
+  ]
+}
