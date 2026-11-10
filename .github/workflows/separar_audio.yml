@@ -1,0 +1,36 @@
+name: Separar Audio
+
+on:
+  workflow_dispatch:
+
+jobs:
+  separar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Instalar FFmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
+      - name: Instalar Demucs
+        run: pip install -U demucs
+
+      - name: Separar la canción
+        run: demucs -n htdemucs --mp3 cancion.mp3
+
+      - name: Comprimir resultados
+        run: |
+          cd separated/htdemucs/cancion
+          zip -r ../../../Pistas_Separadas.zip .
+
+      - name: Guardar ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: pistas-separadas
+          path: Pistas_Separadas.zip
