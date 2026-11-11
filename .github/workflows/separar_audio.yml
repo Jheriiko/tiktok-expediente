@@ -5,13 +5,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Instalar FFmpeg
-        run: sudo apt-get update && sudo apt-get install -y ffmpeg
-      - name: Instalar Demucs
-        run: pip install -U demucs
+      - name: Configurar Python Estable
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Instalar FFmpeg y Dependencias
+        run: |
+          sudo apt-get update && sudo apt-get install -y ffmpeg
+          pip install "numpy<2" demucs
       - name: Separar en 4 pistas
         run: demucs -n htdemucs --mp3 --segment 7 -d cpu -o output cancion.mp3
-      - name: Comprimir
+      - name: Comprimir resultado
         run: zip -r resultado.zip output/
       - uses: actions/upload-artifact@v4
         with:
