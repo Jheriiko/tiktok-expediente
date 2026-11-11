@@ -52,7 +52,7 @@ jobs:
             exit 1
           fi
           echo "🎵 Procesando: $FILE"
-          demucs --two-stems=vocals --segment 10 -d cpu -o output "$FILE"
+          demucs --two-stems=vocals --segment 7 -d cpu -o output "$FILE"
 
       - name: Comprimir resultados
         run: zip -r resultado.zip output/
