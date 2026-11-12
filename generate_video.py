@@ -2,11 +2,11 @@ import os, time, requests, sys
 API_KEY = os.getenv("REPLICATE_API_TOKEN")
 IMAGE_URL = os.getenv("IMAGE_URL")
 PROMPT = "Anima esta imagen vertical 9:16 manteniendo intactos los textos. El plomero parpadea y sonríe."
-API_URL = "https://api.replicate.com/v1/models/minimax/video-01/predictions"
+API_URL = "https://api.replicate.com/v1/predictions"
 def generate_video():
     print("🚀 Iniciando fábrica de videos con Replicate...")
     headers = {"Authorization": f"Bearer {API_KEY}", "Content-Type": "application/json"}
-    payload = {"input": {"prompt": PROMPT, "first_frame_image": IMAGE_URL, "prompt_optimizer": True}}
+    payload = {"version": "minimax/video-01", "input": {"prompt": PROMPT, "first_frame_image": IMAGE_URL, "prompt_optimizer": True}}
     resp = requests.post(API_URL, headers=headers, json=payload)
     if resp.status_code not in [200, 201]:
         print(f"❌ Error: {resp.status_code} - {resp.text}")
