@@ -3,68 +3,61 @@ import time
 import requests
 import sys
 
-API_KEY = os.getenv("AGNES_API_KEY")
+API_KEY = os.getenv("REPLICATE_API_TOKEN")
 IMAGE_URL = os.getenv("IMAGE_URL")
 PROMPT = "Anima esta imagen vertical 9:16 manteniendo intactos los textos. El plomero parpadea y sonríe."
 
-# Endpoint y payload según la documentación oficial de Agnes Video v2.0
-API_URL = "https://apihub.agnes-ai.com/v1/videos"
+# Endpoint oficial para el modelo minimax/video-01
+API_URL = "https://api.replicate.com/v1/models/minimax/video-01/predictions"
 
 def generate_video():
-    print("🚀 Iniciando fábrica de videos Daniel Plomero (Agnes AI)...")
+    print("🚀 Iniciando fábrica de videos con Replicate...")
     headers = {"Authorization": f"Bearer {API_KEY}", "Content-Type": "application/json"}
     
-    # Payload con los parámetros exactos que espera Agnes AI[reference:5]
     payload = {
-        "model": "agnes-video-v2.0",
-        "prompt": PROMPT,
-        "image": IMAGE_URL,
-        "size": "720P",          # Requerido por Agnes
-        "aspect_ratio": "9:16",  # Vertical para redes sociales
-        "num_frames": 121,       # 5 segundos a 24fps (debe ser 8n+1)
-        "frame_rate": 24
+        "input": {
+            "prompt": PROMPT, 
+            "first_frame_image": IMAGE_URL, 
+            "prompt_optimizer": True
+        }
     }
 
     resp = requests.post(API_URL, headers=headers, json=payload)
-    
-    if resp.status_code != 200:
+    if resp.status_code not in [200, 201]:
         print(f"❌ Error en la solicitud: {resp.status_code} - {resp.text}")
-        sys.exit(1) # Fuerza el error en GitHub Actions
-
-    # La respuesta de Agnes usa 'video_id' para la consulta de estado[reference:6]
-    task_data = resp.json()
-    video_id = task_data.get("video_id") or task_data.get("id")
-    if not video_id:
-        print("❌ No se recibió video_id en la respuesta.")
         sys.exit(1)
 
-    print(f"✅ Tarea creada con video_id: {video_id}. Esperando renderizado...")
+    task_data = resp.json()
+    prediction_url = task_data.get("urls", {}).get("get")
+    if not prediction_url:
+        print("❌ No se recibió URL de monitoreo.")
+        sys.exit(1)
+
+    print("✅ Predicción creada en Replicate. Monitoreando estado...")
+    status = "starting"
+    status_data = {}
     
-    # Bucle de polling usando el endpoint correcto de Agnes
-    while True:
-        # Endpoint de consulta: /agnesapi?video_id=...&model_name=...
-        status_url = f"https://apihub.agnes-ai.com/agnesapi?video_id={video_id}&model_name=agnes-video-v2.0"
-        status_resp = requests.get(status_url, headers=headers)
+    while status not in ["succeeded", "failed", "canceled"]:
+        time.sleep(10)
+        status_resp = requests.get(prediction_url, headers={"Authorization": f"Bearer {API_KEY}"})
         status_data = status_resp.json()
         status = status_data.get("status")
+        print(f"⏳ Estado: {status}...")
 
-        if status == "completed":
-            video_url = status_data.get("metadata", {}).get("url") or status_data.get("video_url")
-            if video_url:
-                print("🎉 ¡Video generado! Descargando...")
-                with open("video_daniel_plomero.mp4", "wb") as f:
-                    f.write(requests.get(video_url).content)
-                print("✅ Archivo guardado exitosamente.")
-            else:
-                print("❌ Completado pero sin URL de video.")
-                sys.exit(1)
-            break
-        elif status == "failed":
-            print(f"❌ Falló la generación: {status_data}")
-            sys.exit(1)
+    if status == "succeeded":
+        output = status_data.get("output")
+        video_url = output[0] if isinstance(output, list) else output
+        if video_url:
+            print("🎉 ¡Video generado! Descargando...")
+            with open("video_daniel_plomero.mp4", "wb") as f:
+                f.write(requests.get(video_url).content)
+            print("✅ Archivo guardado con éxito.")
         else:
-            print(f"⏳ Estado: {status}. Esperando 15s...")
-            time.sleep(15)
+            print("❌ Sin URL de video en la respuesta.")
+            sys.exit(1)
+    else:
+        print(f"❌ Falló la generación: {status_data.get('error')}")
+        sys.exit(1)
 
 if __name__ == "__main__":
     generate_video()
