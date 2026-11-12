@@ -1,23 +1,17 @@
 name: Fábrica de Videos Daniel Plomero
-on: workflow_dispatch
+on: [workflow_dispatch, repository_dispatch]
 jobs:
-  generar-video:
+  generar:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with:
-          python-version: "3.10"
-      - name: Instalar Dependencias
-        run: pip install requests
-      - name: Ejecutar Generación
+        with: {python-version: '3.10'}
+      - run: pip install requests
+      - run: python generate_video.py
         env:
-          REPLICATE_API_TOKEN: ${{ secrets.REPLICATE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           IMAGE_URL: ${{ secrets.IMAGE_URL }}
-        run: python generate_video.py
-      - name: Guardar Video
-        uses: actions/upload-artifact@v4
-        with:
-          name: video-daniel-plomero
-          path: video_daniel_plomero.mp4
-          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        with: {name: video-daniel-plomero, path: video_daniel_plomero.mp4}
