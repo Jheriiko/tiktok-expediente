@@ -14,4 +14,4 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           IMAGE_URL: ${{ secrets.IMAGE_URL }}
       - uses: actions/upload-artifact@v4
-        with: {name: video-daniel-plomero, path: video_daniel_plomero.mp4}
+        with: {name: video-daniel-plomero, path: video_daniel_plomero.*}
