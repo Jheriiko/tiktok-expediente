@@ -20,4 +20,4 @@ jobs:
         with:
           name: video-daniel-plomero
           path: video_daniel_plomero.mp4
-          if-no-files-found: error # 🚨 OBLIGA A FALLAR SI NO HAY VIDEO
+          if-no-files-found: error
