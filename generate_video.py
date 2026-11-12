@@ -2,13 +2,13 @@ import os, time, requests, sys
 API_KEY = os.getenv("REPLICATE_API_TOKEN")
 IMAGE_URL = os.getenv("IMAGE_URL")
 PROMPT = "Anima esta imagen vertical 9:16 manteniendo intactos los textos. El plomero parpadea y sonríe."
-API_URL = "https://api.replicate.com/v1/predictions"
+API_URL = "https://api.replicate.com/v1/models/minimax/video-01/predictions"
 def generate_video():
     print("🚀 Iniciando fábrica de videos con Replicate...")
-    headers = {"Authorization": f"Bearer {API_KEY}", "Content-Type": "application/json"}
-    payload = {"version": "minimax/video-01", "input": {"prompt": PROMPT, "first_frame_image": IMAGE_URL, "prompt_optimizer": True}}
+    headers = {"Authorization": f"Bearer {API_KEY}", "Content-Type": "application/json", "Prefer": "wait"}
+    payload = {"input": {"prompt": PROMPT, "first_frame_image": IMAGE_URL, "prompt_optimizer": True}}
     resp = requests.post(API_URL, headers=headers, json=payload)
-    if resp.status_code not in [200, 201]:
+    if resp.status_code not in [200, 201, 202]:
         print(f"❌ Error: {resp.status_code} - {resp.text}")
         sys.exit(1)
     task_data = resp.json()
@@ -17,8 +17,8 @@ def generate_video():
         print("❌ No se recibió URL de monitoreo.")
         sys.exit(1)
     print("✅ Predicción creada. Monitoreando estado...")
-    status = "starting"
-    status_data = {}
+    status = task_data.get("status", "starting")
+    status_data = task_data
     while status not in ["succeeded", "failed", "canceled"]:
         time.sleep(10)
         status_resp = requests.get(prediction_url, headers={"Authorization": f"Bearer {API_KEY}"})
