@@ -53,7 +53,8 @@ def generate_video():
             print("❌ Sin URL de video en la respuesta.")
             sys.exit(1)
     else:
-        print(f"❌ Falló la generación: {status_data.get(\"error\")}")
+        err_msg = status_data.get("error", "Desconocido")
+        print(f"❌ Falló la generación: {err_msg}")
         sys.exit(1)
 
 if __name__ == "__main__":
