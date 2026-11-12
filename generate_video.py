@@ -6,14 +6,11 @@ import sys
 API_KEY = os.getenv("REPLICATE_API_TOKEN")
 IMAGE_URL = os.getenv("IMAGE_URL")
 PROMPT = "Anima esta imagen vertical 9:16 manteniendo intactos los textos. El plomero parpadea y sonríe."
-
-# Endpoint oficial para el modelo minimax/video-01
 API_URL = "https://api.replicate.com/v1/models/minimax/video-01/predictions"
 
 def generate_video():
     print("🚀 Iniciando fábrica de videos con Replicate...")
     headers = {"Authorization": f"Bearer {API_KEY}", "Content-Type": "application/json"}
-    
     payload = {
         "input": {
             "prompt": PROMPT, 
@@ -56,7 +53,7 @@ def generate_video():
             print("❌ Sin URL de video en la respuesta.")
             sys.exit(1)
     else:
-        print(f"❌ Falló la generación: {status_data.get('error')}")
+        print(f"❌ Falló la generación: {status_data.get("error")}")
         sys.exit(1)
 
 if __name__ == "__main__":
