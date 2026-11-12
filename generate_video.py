@@ -5,7 +5,7 @@ PROMPT = "Anima esta imagen vertical 9:16 manteniendo intactos los textos. El pl
 API_URL = "https://api.replicate.com/v1/models/minimax/video-01/predictions"
 def generate_video():
     print("🚀 Iniciando fábrica de videos con Replicate...")
-    headers = {"Authorization": f"Bearer {API_KEY}", "Content-Type": "application/json", "Prefer": "wait"}
+    headers = {"Authorization": f"Bearer {API_KEY}", "Content-Type": "application/json", "Prefer": "wait=60"}
     payload = {"input": {"prompt": PROMPT, "first_frame_image": IMAGE_URL, "prompt_optimizer": True}}
     resp = requests.post(API_URL, headers=headers, json=payload)
     if resp.status_code not in [200, 201, 202]:
