@@ -23,7 +23,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y ffmpeg
-          pip install -U demucs
+          pip install -U demucs "numpy<2"
 
       - name: Descargar el Audio
         run: |
